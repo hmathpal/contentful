@@ -23,28 +23,32 @@ class Home extends React.Component
  
   componentDidMount() 
   {
-   
-  const query = `query {
-    articleCollection(limit: 10) {
-      items
-      {
-        title
-        body
-        image {fileName url}
-  
-          
-      }
+    const API = appConfig.graphQLHost+"/"+appConfig.space_id+"/"
+    const headers = {
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer '+appConfig.access_token
     }
-  }`
+    axios.post(API, 
+      {
+        query : `{
+          articleCollection(limit: 10) {
+            items
+            {
+              title
+              body
+              image {fileName url}
+        
+                
+            }
+          }
+        }`
 
-   //const API = appConfig.host+appConfig.space_id+"/environments/"+appConfig.environment+"/entries?content_type=article&access_token="+appConfig.access_token+"&include=3";
-    const API = appConfig.graphQLHost+appConfig.space_id+"/"
-
-    axios.post(API, query, {headers : {Authentication : 'Bearer '+appConfig.access_token} , "Content-Type": "application/json"})
+    }
+    , {  headers : headers  })
       .then(res => {
-       
-       this.setState({ articles: res.data.items })
-      console.log(res.data.items )
+        
+        this.setState({ articles: res.data.data.articleCollection.items })
+        console.log("RES --> ",res.data.data.articleCollection.items )
        
       }).catch((error) => {
         console.error(error)
@@ -55,53 +59,44 @@ class Home extends React.Component
 
   render() {
    
-    return(
+    
+    let columns=[];
+    this.state.articles.forEach((item,idx) => {
+
+      
+        
+        columns.push(
+          <Col style={{ paddingTop: "10px" }}>
+          <Card style={{ maxWidth: "300px" }}>
+          <CardHeader>Article</CardHeader>
+          <CardImg src={item.image.url} />
+          <CardBody>
+            <CardTitle>{item.title}</CardTitle>
+            <p className="text-truncate">{item.body}</p>
+            <Button>Read more &rarr;</Button>
+          </CardBody>
+        
+        </Card>
+        </Col>
+        )
+       
+        // force wrap to next row every 4 columns
+        if ((idx+1)%2===0) {columns.push( <Row style={{ paddingTop: "20px" }}></Row>)}
+    })
+
+
+    return (
         <Container>
-
-     
-
-      <Row style={{ paddingTop: "20px" }}>
-
-        
-          <Col>
-          <Card>
-            <CardImg top src="https://images.unsplash.com/photo-1542736667-069246bdbc6d?ixid=MXwxMjA3fDB8MHxzZWFyY2h8OXx8aGVhbHRofGVufDB8fDB8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" />
-            <CardBody>
-              <p>Our team and skills. </p>
-            </CardBody>
-          </Card>
-        </Col>
-          
-        
-        <Col>
-          <Card>
-            <CardImg top src="https://images.unsplash.com/photo-1490645935967-10de6ba17061?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MjZ8fGhlYWx0aHxlbnwwfHwwfA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" />
-            <CardBody>
-              <p>Natural products and medicines.</p>
-            </CardBody>
-          </Card>
-        </Col>
-
-        <Col>
-          <Card>
-            <CardImg top src="https://images.unsplash.com/photo-1511174511562-5f7f18b874f8?ixid=MXwxMjA3fDB8MHxzZWFyY2h8NDB8fGhlYWx0aHxlbnwwfHwwfA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" />
-            <CardBody>
-            <p>Research and Development.</p>
-            </CardBody>
-          </Card>
-        </Col>
-        
-     
-      </Row>
-          
-      {this.state.articles.map((arctile, index) => (
-        <p key={index}>Hello, {arctile.fields.title} !</p>
-    ))}
-          
-          
-    </Container>
-
-    )
+           <Row style={{ paddingTop: "30px" }}>
+          {columns}
+        </Row>
+        </Container>
+    )       
+    
+    
+    
+    
+    
   }
 }
 
