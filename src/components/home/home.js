@@ -55,10 +55,13 @@ class Home extends React.Component
       })
   }
 
+ 
 
-
-  render() {
+  render() 
+  {
    
+   
+
     
     let columns=[];
     this.state.articles.forEach((item,idx) => {
@@ -73,7 +76,7 @@ class Home extends React.Component
           <CardBody>
             <CardTitle>{item.title}</CardTitle>
             <p className="text-truncate">{item.body}</p>
-            <Button>Read more &rarr;</Button>
+            <Button className="btn btn-outline-warning btn-sm">Read more &rarr;</Button>
           </CardBody>
         
         </Card>
@@ -86,11 +89,26 @@ class Home extends React.Component
 
 
     return (
-        <Container>
+        <Container style={{ paddingTop: "10px" }}>
+     
+     <div className="jumbotron " style={{ 
+      backgroundImage: `url("https://cdn.pixabay.com/photo/2015/05/31/10/51/acer-791027__340.jpg")`, backgroundSize:"100%"
+    }}>
+    <h1 className="display-4 text-info">Hello Spark</h1>
+    <p className="lead text-info">This is a simple demo built on Contentful Headless CMS and React JS.</p>
+    
+    <p className="lead text-info">For all the CSS and HTML elements we are using Bootstrap.</p>
+    <p className="lead">
+    <a className="btn btn-warning btn-sm" href="#" role="button">Learn more</a>
+   </p>
+   </div>
            <Row style={{ paddingTop: "30px" }}>
+          
           {columns}
         </Row>
+      
         </Container>
+        
     )       
     
     
