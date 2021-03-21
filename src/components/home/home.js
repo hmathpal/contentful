@@ -7,6 +7,7 @@ import { ListGroup, ListGroupItem, ListGroupItemHeading } from "shards-react";
 import { useState, useEffect } from "react";
 import { appConfig } from "../config"
 import axios from 'axios';
+import '../../css/custom.css';
 
 
 
@@ -90,18 +91,8 @@ class Home extends React.Component
 
     return (
         <Container style={{ paddingTop: "10px" }}>
-     
-     <div className="jumbotron " style={{ 
-      backgroundImage: `url("https://cdn.pixabay.com/photo/2015/05/31/10/51/acer-791027__340.jpg")`, backgroundSize:"100%"
-    }}>
-    <h1 className="display-4 text-info">Hello Spark</h1>
-    <p className="lead text-info">This is a simple demo built on Contentful Headless CMS and React JS.</p>
+   
     
-    <p className="lead text-info">For all the CSS and HTML elements we are using Bootstrap.</p>
-    <p className="lead">
-    <a className="btn btn-warning btn-sm" href="#" role="button">Learn more</a>
-   </p>
-   </div>
            <Row style={{ paddingTop: "30px" }}>
           
           {columns}

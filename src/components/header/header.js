@@ -1,37 +1,57 @@
-import React from 'react';
-import { FaBeer, FaSlackHash } from 'react-icons/fa';
+import React from "react";
 
 import {
-    Navbar,
-    NavbarBrand,
-    NavItem,
-    NavLink,
-    Nav
-   
-  } from "shards-react";
+  Navbar,
+  NavbarToggler,
+  NavbarBrand,
+  Nav,
+  NavItem,
+  NavLink,
+  Dropdown,
+  DropdownToggle,
+  DropdownMenu,
+  DropdownItem,
+  InputGroup,
+  InputGroupAddon,
+  InputGroupText,
+  FormInput,
+  Collapse
+} from "shards-react";
 
-class Header extends React.Component{
+import '../../css/custom.css'
+ 
+ class Header extends React.Component {
+  
+
   render() {
-    return(
-        <Navbar type="dark" theme="info" expand="md">
-         <NavbarBrand href="/"><strong>Spark</strong> </NavbarBrand>
-         <Nav navbar>
-         <NavItem>
-              <NavLink active href="/products">
-                Products
-              </NavLink>
-            </NavItem>
+    return (
+      <Navbar type="dark" className="navbar-custom" expand="md">
+        <NavbarBrand href="#" className="h1-custom">Spark</NavbarBrand>
 
-            <NavItem>
-              <NavLink active href="/services">
-                Services
-              </NavLink>
-            </NavItem>
-            </Nav>
-        </Navbar>
+        
+        <NavbarToggler onClick={this.toggleNavbar} />
 
+       
+    <Nav navbar className="ml-auto">
+        <Nav>
+          <NavItem>
+            <NavLink active href="#">
+              Demos
+            </NavLink>
+          </NavItem>
+          <NavItem>
+            <NavLink href="#">Technologies</NavLink>
+          </NavItem>
+          <NavItem>
+            <NavLink href="#">Data</NavLink>
+          </NavItem>
+         
+        </Nav>
+      </Nav>
 
-    )
+        
+      </Navbar>
+    );
   }
 }
 
