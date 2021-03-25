@@ -1,15 +1,10 @@
 import React from "react";
-import { Alert, Container, Row, Col, Card, CardTitle, CardHeader, CardBody, CardImg , Button, Modal, ModalBody, ModalHeader} from "shards-react";
-import { Form, FormInput, FormGroup } from "shards-react";
-import { FaSkype, FaSlackHash, FaWhatsapp, FaSms, FaMailBulk, FaSlack, FaPhone, FaArrowRight } from 'react-icons/fa';
-import { ListGroup, ListGroupItem, ListGroupItemHeading } from "shards-react";
-
-import { useState, useEffect } from "react";
+import { Alert, Container, Row, Col, Button} from "shards-react";
 import { appConfig } from "../config"
 import axios from 'axios';
+import { truncateString } from "../util"
 
-
-
+import ReactTimeAgo from 'react-time-ago'
 
 class Products extends React.Component
 {
@@ -36,7 +31,12 @@ class Products extends React.Component
             {
               name
               
-              pid
+              path
+
+              description
+
+              image {fileName url}
+              sys {id publishedAt}
               
         
                 
@@ -49,14 +49,20 @@ class Products extends React.Component
       .then(res => {
         
         this.setState({ articles: res.data.data.productCollection.items })
-        console.log("RES --> ",res.data.data.articleCollection.items )
+       
        
       }).catch((error) => {
         console.error(error)
       })
   }
 
+  handleClick(path)
+{
+ 
 
+  window.location.href= "../"+path;
+ 
+}
 
   render() {
    
@@ -67,30 +73,38 @@ class Products extends React.Component
       
         
         columns.push(
-          <Col style={{ paddingTop: "10px" }}>
-          <Card style={{ maxWidth: "300px" }}>
-          <CardHeader>Product</CardHeader>
-          
-          <CardBody>
-            <CardTitle>{item.name}</CardTitle>
-            <p className="text-truncate">Product ID : {item.pid}</p>
-            <Button>Read more &rarr;</Button>
-          </CardBody>
+         
+         <section>
+         <Row  style={{ paddingTop: "20px" }}>
+             
+          <Col sm="12" lg="2">
+           <img src={item.image.url} className="img-thumbnail img-fluid"></img>
+          </Col>
+          <Col sm="12" lg="10">
+           <h5>{item.name}</h5>
+           <p><small>Published  <ReactTimeAgo date={item.sys.publishedAt} locale="en-US"  /> </small></p>
+          <p>{truncateString(item.description,250)}</p>
         
-        </Card>
-        </Col>
+           <p className="text-right"> <Button className="btn btn-outline-primary btn-sm" onClick={() => this.handleClick(item.path)}>Demo &rarr;</Button></p>
+           
+          </Col>
+        
+        </Row>
+        <Row>
+          <Col><hr></hr></Col>
+        </Row>
+        </section>
         )
        
-        // force wrap to next row every 4 columns
-        if ((idx+1)%2===0) {columns.push( <Row style={{ paddingTop: "20px" }}></Row>)}
+     
     })
 
 
     return (
-        <Container>
-           <Row style={{ paddingTop: "30px" }}>
+    <Container>
+       
           {columns}
-        </Row>
+   
         </Container>
     )       
     

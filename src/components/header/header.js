@@ -6,16 +6,7 @@ import {
   NavbarBrand,
   Nav,
   NavItem,
-  NavLink,
-  Dropdown,
-  DropdownToggle,
-  DropdownMenu,
-  DropdownItem,
-  InputGroup,
-  InputGroupAddon,
-  InputGroupText,
-  FormInput,
-  Collapse
+  NavLink
 } from "shards-react";
 
 import '../../css/custom.css'
@@ -26,7 +17,7 @@ import '../../css/custom.css'
   render() {
     return (
       <Navbar type="dark" className="navbar-custom" expand="md">
-        <NavbarBrand href="#" className="h1-custom">Spark</NavbarBrand>
+        <NavbarBrand href="/" className="h1-custom">Spark</NavbarBrand>
 
         
         <NavbarToggler onClick={this.toggleNavbar} />
@@ -35,12 +26,12 @@ import '../../css/custom.css'
     <Nav navbar className="ml-auto">
         <Nav>
           <NavItem>
-            <NavLink active href="#">
+            <NavLink active href="/page/products">
               Demos
             </NavLink>
           </NavItem>
           <NavItem>
-            <NavLink href="#">Technologies</NavLink>
+            <NavLink href="/page/services">Services</NavLink>
           </NavItem>
           <NavItem>
             <NavLink href="#">Data</NavLink>

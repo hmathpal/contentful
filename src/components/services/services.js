@@ -1,10 +1,6 @@
 import React from "react";
 import { Alert, Container, Row, Col, Card, CardTitle, CardHeader, CardBody, CardImg , Button, Modal, ModalBody, ModalHeader} from "shards-react";
-import { Form, FormInput, FormGroup } from "shards-react";
-import { FaSkype, FaSlackHash, FaWhatsapp, FaSms, FaMailBulk, FaSlack, FaPhone, FaArrowRight } from 'react-icons/fa';
-import { ListGroup, ListGroupItem, ListGroupItemHeading } from "shards-react";
 
-import { useState, useEffect } from "react";
 import { appConfig } from "../config"
 import axios from 'axios';
 
@@ -83,8 +79,7 @@ class Services extends React.Component
         </Col>
         )
        
-        // force wrap to next row every 4 columns
-        if ((idx+1)%2===0) {columns.push( <Row style={{ paddingTop: "20px" }}></Row>)}
+       
     })
 
 

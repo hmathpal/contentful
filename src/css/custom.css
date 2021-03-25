@@ -1,6 +1,8 @@
-
-          
-        .navbar-custom { 
+body
+{
+  color:black;
+}
+.navbar-custom { 
             background-color: rgb(3, 67, 251); 
         } 
         /* Modify brand and text color */ 
@@ -30,6 +32,94 @@
     margin: 0px 0px 0.55em;
     font-size: 1.5vw;
   }
+  .bgimage {
+    width:100%;
+    height:500px;
+    background:  url('https://cdn.pixabay.com/photo/2014/08/31/23/56/social-432495_960_720.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size:cover;
+    background-attachment: scroll;
+  
 
+    
+  }
+  .bgimage-text-h
+  {
+    margin: 0px 0px 0.55em;
+    font-size: 2.5vw;
+    text-align: left;
+    font-weight: bold;
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: black;
+    
+  }
+  .bgimage-text-p 
+  {
+    margin: 0px 0px 0.55em;
+    font-size: 1vw;
+    text-align: left;
+   
+    position: absolute;
+    top: 90%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    
+  }
+  
  
- 
+  
+  
+  
+  @keyframes title{ 
+    from { width: 0; opacity: 0.0;}
+    to { opacity: 1.0; } 
+  } 
+
+  .hr-1 {
+    border-top: 15px solid rgb(3, 67, 251);
+  }
+  
+
+  .hr-2 {
+    border-top: 3px solid rgb(3, 67, 251);
+  }
+  
+  .footer {
+   
+    text-align: center;
+    font-size: 1.5vh; 
+  }
+  
+  /*** Mapbox *****/
+
+  .map-container {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    
+    }
+     
+    .sidebar {
+    background-color: rgba(35, 55, 75, 0.9);
+    color: #ffffff;
+    padding: 6px 12px;
+    font: 15px/24px monospace;
+    z-index: 1;
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin: 12px;
+    border-radius: 4px;
+    }
+
+
+    .mycontent-left {
+      border-right: 1px solid rgba(0,0,0,.1);
+    }
+   
